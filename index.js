@@ -28,6 +28,17 @@ app.get('/blog/:artigo?',function(req,res){
     res.send('Bem vindo a o meu blog');
 })
 
+
+app.get('/canal/yutube',function(req,res){
+     var canal = req.query['canal']
+
+     if(canal){
+        res.end(canal);
+     }else{
+        res.end('Nenhum canal informado')
+     }
+})
+
 app.listen(4000,function(erro){
     if(erro){
         console.log('Ocorreu um erro');

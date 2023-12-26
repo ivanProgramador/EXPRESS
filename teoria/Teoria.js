@@ -90,6 +90,22 @@ app.get('/blog/:artigo?',function(req,res){
     res.send('Bem vindo a o meu blog');
 })
 
+query params são aprametros passado direto na url
+a rota abaixo pode ser acesssada com ou sem o nome do canal 
+na segunda linha eu consigo capturar o valor da varivel pra exibir se eu quiser
+essa é uma maneira muito arcaica de trabalhar com parametros mas eu coloquei pra fins
+de conhecimento
+
+app.get('/canal/yutube',function(req,res){
+     var canal = req.query['canal']
+
+     if(canal){
+        res.end(canal);
+     }else{
+        res.end('Nenhum canal informado')
+     }
+})
+
 
 
 
