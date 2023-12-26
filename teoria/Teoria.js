@@ -32,9 +32,71 @@ app.get('/',function(req,res){
   eu vejo uma pagina com varios produtos, mas eu quero saber mais, sobre um produto especifico.
   
   quando clico sobre ele o site tem que nme levar a uma pagina de detalhes desse produto e com as opções de 
-  compra possiveis.mas para que isso aconteça a rota tem que receber os dados desse produto pra poder mostrar.
+  compra possiveis más para que isso aconteça a rota tem que receber os dados desse produto pra poder mostrar.
 
- 
+  req e res são dois objetos um parametro passado pela requisição fica dentro do obejto req 
+  pra acessar o valor do dado eu tenho que accessar os parametro do onjeto req e dedpoiss esqpecificar qual 
+  eo indice que eu quero, na rota abaixo eu criei a variavel :nome então tudo oque vier na requisição vai pra 
+  dentro dela e ela por sua vez va pra dentro do objeto de requisição
+   
+  então pra acessar ela 
+
+  req.params.nome
+
+
+  
+  app.get('/ola/:nome',function(req,res){
+    var nome = req.params.nome;
+    res.end(`<h1>ola:${nome}<h1>`)
+
+})
+
+Rota com mais de 1 parametro na rita abaixo eu recebo o nome eo estado 
+
+app.get('/ola/:nome/:estado',function(req,res){
+    var nome = req.params.nome;
+    var estado = req.params.estado;
+    res.end(`<h1>nome: ${nome} <br> estado: ${estado}<h1>`)
+
+})
+
+Rota com parametro opcional  basta colocar a interrogação no final do nome do parametro 
+
+app.get('/ola/:nome?/:estado?',function(req,res){
+    var nome = req.params.nome;
+    var estado = req.params.estado;
+    res.end(`<h1>nome: ${nome} <br> estado: ${estado}<h1>`)
+
+})
+
+Mas caso a exibição de parte do conteudo dependa desses dados vai ficar o nome undefined 
+escrito na tela porque o js não vai ter um valor para mostrar 
+como resolver aqui eu criei respostas condicionais com base no valor da variavel artigo 
+
+se ela vier com conteudo o nome dela é exibido
+
+se não eu coloco outro retorno 
+
+app.get('/blog/:artigo?',function(req,res){
+
+    var artigo = req.params.artigo;
+
+    if(artigo){
+        res.end(`<h1>O artigo de hoje e: ${artigo} </h1>`)
+    }else{
+        res.end(`<h1>Não tem artigo hoje</h1>`)
+
+    }
+    res.send('Bem vindo a o meu blog');
+})
+
+
+
+
+
+
+
+  
 
 
 */
